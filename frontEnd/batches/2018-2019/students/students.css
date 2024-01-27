@@ -1,0 +1,11 @@
+.table table ,tr,td th{
+    border-collapse: collapse;
+}
+.table{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+.table th ,td{
+    padding: 20px 133px;
+}

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--icons-->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- google fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Student Form</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        font-family: "Nunito", sans-serif;
+        background-color: #f4f4f4;
+      }
+
+      header {
+        background-color: #f4f4f4;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        height: 50px;
+      }
+
+      #logo-container {
+        order: 1;
+      }
+
+      .app-logo {
+        margin-top: 15px;
+        margin-left: 10px;
+        height: 60px;
+        width: 230px;
+      }
+
+      #collapsible-navbar {
+        order: 3;
+        cursor: pointer;
+      }
+
+      #menu-container {
+        display: flex;
+        flex-direction: column;
+        background-color: #dfe9ed;
+        gap: 20px 0;
+        transition: width 0.2s ease;
+        overflow: hidden;
+        width: 0;
+        border-radius: 15px;
+        order: 2;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        z-index: 10;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        padding: 0px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .menu-icon {
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        padding: 20px 30px;
+      }
+
+      .menu-icon:hover {
+        background-color: #c0d5dc;
+        transform: scale(1.05);
+      }
+
+      .icon {
+        font-size: 24px;
+        color: #416f83;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .icon:hover + .menu-item {
+        display: block;
+      }
+
+      /* rightCorner */
+      li {
+        list-style: none;
+      }
+
+      .nav-right-corner {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+      }
+      .user-profile {
+        font-size: 21px;
+        color: #9aa5ab;
+      }
+
+      .user-profile:hover {
+        text-decoration: underline;
+        color: #2d667e;
+      }
+
+      /* student form styling */
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes Pops {
+        0%,
+        100% {
+          transform: scale(1) translateY(0);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(5) translateY(-10px);
+          opacity: 1;
+        }
+      }
+
+      .form-container {
+        position: fixed;
+        top: 52%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 40px 80px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        align-items: center;
+        justify-content: center;
+        max-width: 400px;
+        width: 100%;
+        border-radius: 14px;
+      }
+
+      label,
+      input,
+      select,
+      button {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      .student-form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .formcard {
+        transition: transform 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .formcard:hover {
+        transform: scale(1.05);
+      }
+
+      .student-form label {
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      .student-form input,
+      select {
+        padding: 8px;
+        margin-bottom: 16px;
+        border: 0.5px solid #a3a3a3;
+        box-sizing: border-box;
+        border-radius: 4px;
+        font-size: 16px;
+        justify-content: flex-start;
+      }
+
+      .student-form button {
+        width: 100%;
+        margin-top: 15px;
+        padding: 12px;
+        background-color: #cf7610;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: transform 2s;
+      }
+
+      .student-form button:hover {
+        background-color: #b96607;
+        transform: scale(1.05);
+      }
+      /**/
+
+      /* media query */
+    </style>
+  </head>
+  <body>
+    <header>
+      <!--logo-->
+      <div>
+        <li id="logo-container">
+          <img src="pictures/LogoFinal.png" alt="app logo" class="app-logo" />
+        </li>
+      </div>
+
+      <ul class="nav-right-corner">
+        <li><a href="profile.html" class="user-profile">Username</a></li>
+        <li id="menu-icon-container">
+          <div id="collapsible-navbar" onclick="toggleMenu()">
+            <i class="fas fa-bars icon"></i>
+          </div>
+        </li>
+      </ul>
+    </header>
+
+    <nav id="menu-container">
+      <a href="http://localhost:4000/api/home" class="menu-icon">
+        <i class="fas fa-home icon"></i>
+        <span class="menu-item">Home</span>
+      </a>
+
+      <a href="#" class="menu-icon">
+        <i class="fas fa-bell icon"></i>
+        <span class="menu-item">Notifications</span>
+      </a>
+
+      <a href="http://localhost:4000/api/batches" class="menu-icon">
+        <i class="fa-solid fa-users icon"></i>
+        <span class="menu-item">Batches</span>
+      </a>
+
+      <a href="#" class="menu-icon">
+        <i class="fa-solid fa-file icon"></i>
+        <span class="menu-item">Class Routine</span>
+      </a>
+
+      <a href="#" class="menu-icon">
+        <i class="fa-regular fa-address-book icon"></i>
+        <span class="menu-item">Add Students</span>
+      </a>
+
+      <a href="" class="menu-icon">
+        <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
+        <span class="menu-item">Logout</span>
+      </a>
+    </nav>
+
+    <!-- form -->
+
+    <div class="form-container" id="formContainer">
+      <form class="student-form">
+        <!--<i class="fas fa-times close-icon" onclick="closeForm()"></i>-->
+
+        <div class="formcard">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="formcard">
+          <label for="id">ID:</label>
+          <input type="text" id="id" name="id" required />
+        </div>
+
+        <div class="formcard">
+          <label for="session">Session:</label>
+          <input type="text" id="session" name="session" required />
+        </div>
+
+        <div class="formcard">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="formcard">
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="phone" required />
+        </div>
+
+        <div class="formcard">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      /* toggle menubar */
+
+      function toggleMenu() {
+        var menuContainer = document.getElementById("menu-container");
+        menuContainer.style.width =
+          menuContainer.style.width === "300px" ? "0" : "300px";
+
+        var cardContainer = document.querySelector(".container");
+        cardContainer.style.marginRight =
+          menuContainer.style.width === "300px" ? "500px" : "auto";
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var cards = document.querySelectorAll(".card-container a .card");
+
+        cards.forEach(function (card, index) {
+          if (index % 2 === 0) {
+            card.classList.add("even-card");
+          } else {
+            card.classList.add("odd-card");
+          }
+        });
+      });
+
+      function openForm() {
+        const popup = document.getElementById("popupContainer");
+        popup.style.display = "block";
+      }
+
+      function closeForm() {
+        const popup = document.getElementById("popupContainer");
+        popup.style.display = "none";
+      }
+
+      const form = document.querySelector("form");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const data = new FormData(form);
+        const urlEncoded = new URLSearchParams(data).toString();
+
+        try {
+          const response = await fetch(
+            "http://localhost:4000/api/form/submit",
+            {
+              method: "POST",
+              body: urlEncoded,
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+            }
+          );
+
+          const result = await response.json();
+          if (result.success) {
+            form.reset();
+            alert("Form submitted successfully! Data is stored.");
+          } else {
+            console.error("Form submission failed:", result.error);
+          }
+          console.log(result);
+        } catch (error) {
+          console.error("Error submitting form:", error);
+        }
+      });
+    </script>
+  </body>
+</html>

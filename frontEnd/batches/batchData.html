@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--icons-->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- google fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        font-family: "Nunito", sans-serif;
+        background-color: #f4f4f4;
+      }
+
+      header {
+        background-color: #f4f4f4;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        height: 50px;
+      }
+
+      #logo-container {
+        order: 1;
+      }
+
+      .app-logo {
+        margin-top: 15px;
+        margin-left: 10px;
+        height: 60px;
+        width: 230px;
+      }
+
+      #collapsible-navbar {
+        order: 3;
+        cursor: pointer;
+      }
+
+      #menu-container {
+        display: flex;
+
+        flex-direction: column;
+        background-color: #dfe9ed;
+        gap: 20px 0;
+        transition: width 0.2s ease;
+        overflow: hidden;
+        width: 0;
+        border-radius: 15px;
+        order: 2;
+        position: absolute;
+        top: 70px;
+        right: 0;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        padding: 0px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .menu-icon {
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        padding: 20px 30px;
+      }
+
+      .menu-icon:hover {
+        background-color: #c0d5dc;
+        transform: scale(1.05);
+      }
+
+      .icon {
+        font-size: 24px;
+        color: #416f83;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .icon:hover + .menu-item {
+        display: block;
+      }
+
+      /* rightC */
+      li {
+        list-style: none;
+      }
+
+      .nav-right-corner {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+      }
+      .user-profile {
+        font-size: 21px;
+        color: #9aa5ab;
+      }
+
+      .user-profile:hover {
+        text-decoration: underline;
+        color: #2d667e;
+      }
+
+      /*card styling*/
+      .container {
+        width: 80%;
+        margin: 10px auto;
+        /* background-color: #416f83;*/
+      }
+
+      .card-container {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        flex-wrap: wrap;
+        padding: 50px;
+      }
+
+      .card {
+        width: 300px;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+        max-height: 260px;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+      }
+
+      .card-container a {
+        text-decoration: none;
+        color: #000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .card.even-card .card-content {
+        background-color: #000000;
+      }
+
+      .card.odd-card .card-content {
+        background-color: #2f6674;
+      }
+
+      .card img {
+        width: 40%;
+        margin: 20px;
+      }
+
+      .card-content {
+        padding: 15px;
+      }
+
+      .card-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #ffff;
+      }
+
+      .card-description {
+        font-size: 14px;
+        color: #a5a5a5;
+      }
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      .card-options-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        color: #416f83;
+        font-size: 20px;
+      }
+
+      /* Search bar styling */
+      .search-icon {
+        color: #ffffff;
+        font-size: 24px;
+        border-radius: 0 18px 18px 0;
+        padding: 10px;
+      }
+
+      .search-container {
+        width: 400px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        height: 45px;
+        background-color: transparent;
+      }
+
+      .search-container input[type="text"] {
+        outline: none;
+        border: none;
+        width: 100%;
+        font-size: 17px;
+        padding: 12.5px 30px;
+        border-radius: 20px 0 0 20px;
+      }
+
+      .search-container input[type="text"]:focus {
+        border: none;
+        outline: none;
+      }
+
+      .search-icon-container {
+        cursor: pointer;
+        border-radius: 0 20px 20px 0;
+        background-color: #e1874a;
+        height: 100%;
+      }
+
+      /** add-courses button **/
+
+      .add-courses {
+        margin-top: 30px;
+        margin-left: 100px;
+        font-size: 25px;
+        cursor: pointer;
+        border-radius: 20px;
+      }
+
+      .add-courses .icon {
+        font-size: 20px;
+        color: #ffffff;
+        border-radius: 50%;
+        padding: 15px 17px;
+        background-color: #e1874a;
+      }
+      .add-courses .text {
+        display: inline-block;
+        font-weight: 500;
+        font-size: 25px;
+        color: #000000;
+      }
+      /**/
+
+      /* popup form styling */
+
+      .popup-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 50px 50px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        max-width: 400px;
+        width: 100%;
+        border-radius: 8px;
+      }
+
+      .popup-form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .close-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        color: #bbbbbb;
+        transition: color 0.3s ease;
+      }
+
+      .popup-form label {
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      .popup-form input {
+        padding: 10px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+
+      .popup-form button {
+        margin-top: 20px;
+        padding: 12px;
+        background-color: #cf7610;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .popup-form button:hover {
+        background-color: #b96607;
+      }
+      /**/
+    </style>
+  </head>
+  <body>
+    <header>
+      <!--logo-->
+      <div>
+        <li id="logo-container">
+          <img src="pictures/LogoFinal.png" alt="app logo" class="app-logo" />
+        </li>
+      </div>
+
+      <ul class="nav-right-corner">
+        <li><a href="profile.html" class="user-profile">Username</a></li>
+        <li id="menu-icon-container">
+          <div id="collapsible-navbar" onclick="toggleMenu()">
+            <i class="fas fa-bars icon"></i>
+          </div>
+        </li>
+      </ul>
+    </header>
+
+    <nav id="menu-container">
+      <a href="http://localhost:4000/api/home" class="menu-icon">
+        <i class="fas fa-home icon"></i>
+        <span class="menu-item">Home</span>
+      </a>
+
+      <a href="#" class="menu-icon">
+        <i class="fas fa-bell icon"></i>
+        <span class="menu-item">Notifications</span>
+      </a>
+
+      <a href="http://localhost:4000/api/batches" class="menu-icon">
+        <i class="fa-solid fa-users icon"></i>
+        <span class="menu-item">Batches</span>
+      </a>
+
+      <a href="#" class="menu-icon">
+        <i class="fa-solid fa-file icon"></i>
+        <span class="menu-item">Class Routine</span>
+      </a>
+
+      <a href="http://localhost:4000/api/form" class="menu-icon">
+        <i class="fa-regular fa-address-book icon"></i>
+        <span class="menu-item">Add Students</span>
+      </a>
+
+      <a href="" class="menu-icon">
+        <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
+        <span class="menu-item">Logout</span>
+      </a>
+    </nav>
+
+    <!--add button-->
+    <div class="container">
+      <div class="add-courses">
+        <i class="fas fa-plus icon" onclick="openForm()"></i>
+        <div class="text">Add a Course</div>
+      </div>
+
+      <!--card container-->
+
+      <div class="card-container"></div>
+    </div>
+
+    <!-- ...pop up... -->
+    <div class="popup-container" id="popupContainer">
+      <form class="popup-form">
+        <i class="fas fa-times close-icon" onclick="closePopup()"></i>
+
+        <label for="name">Course Name:</label>
+        <input type="text" id="course-name" name="course_name" required />
+
+        <label for="id">Course ID:</label>
+        <input type="text" id="course-id" name="courseid" required />
+
+        <label for="session">Session:</label>
+        <input type="text" id="course-session" name="session" required />
+
+        <button type="button" onclick="addCard()">Submit</button>
+      </form>
+    </div>
+
+    <!--cards-->
+
+    <script>
+      let session;
+      function toggleMenu() {
+        var menuContainer = document.getElementById("menu-container");
+        menuContainer.style.width =
+          menuContainer.style.width === "300px" ? "0" : "300px";
+
+        var cardContainer = document.querySelector(".container");
+        cardContainer.style.marginRight =
+          menuContainer.style.width === "300px" ? "500px" : "auto";
+      }
+
+      let formclick = true;
+      function openForm() {
+        if (formclick) {
+          formclick = false;
+          const popup = document.getElementById("popupContainer");
+          popup.style.display = "block";
+        } else {
+          formclick = true;
+          closePopup();
+        }
+      }
+      function closePopup() {
+        const popup = document.getElementById("popupContainer");
+        popup.style.display = "none";
+        // location.reload(true);
+      }
+
+      async function addCard() {
+        console.log("form submitted");
+        const form = document.querySelector(".popup-form");
+        const data = new FormData(form);
+        const urlEncoded = new URLSearchParams(data).toString();
+        console.log(urlEncoded);
+        try {
+          const response = await fetch(
+            "http://localhost:4000/api/Courses/addCourses",
+            {
+              method: "POST",
+              body: urlEncoded,
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+            }
+          );
+
+          const result = await response.json();
+          if (result.success) {
+            form.reset();
+            alert("Form submitted successfully! Data is stored.");
+            location.reload();
+          } else {
+            console.error("Form submission failed:", result.error);
+          }
+          console.log(result);
+        } catch (error) {
+          console.error("Error submitting form:", error);
+        }
+        closePopup();
+      }
+
+      let evenClass = true;
+      function createCard(title, description, session) {
+        var imageUrls = [
+          "https://i.postimg.cc/HsFxxH7H/graduate-hat.png",
+          "https://i.postimg.cc/NG9Lw55b/memo.png",
+          "https://i.postimg.cc/m2jz2Kyg/book-3330314.png",
+        ];
+
+        // Randomly select an image URL
+        var randomImageUrl =
+          imageUrls[Math.floor(Math.random() * imageUrls.length)];
+        const imageElement = document.createElement("img");
+
+        // Set attributes
+        imageElement.src = randomImageUrl;
+        imageElement.alt = title;
+
+        // Create a card link
+        const cardLink = document.createElement("a");
+        cardLink.href = "#";
+
+        // Create a card
+        const card = document.createElement("div");
+        card.classList.add("card");
+        if (evenClass) {
+          card.classList.add("even-card");
+          evenClass = false;
+        } else {
+          card.classList.add("odd-card");
+          evenClass = true;
+        }
+
+        card.addEventListener("click", function (event) {
+          event.preventDefault();
+          window.location.href = `http://localhost:4000/api/data/Students/coursepage?courseid=${title}`;
+        });
+
+        // Create card content
+        const cardContent = document.createElement("div");
+        cardContent.classList.add("card-content");
+
+        // Create card title
+        const cardTitle = document.createElement("p");
+        cardTitle.classList.add("card-title");
+        cardTitle.textContent = title;
+
+        // Create card description
+        const cardDescription = document.createElement("p");
+        cardDescription.classList.add("card-description");
+        cardDescription.textContent = description;
+
+        // Append elements
+        cardContent.appendChild(cardTitle);
+        cardContent.appendChild(cardDescription);
+        card.appendChild(imageElement);
+        card.appendChild(cardContent);
+        cardLink.appendChild(card);
+
+        return cardLink;
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Fetch data from the server on page load
+        fetchData();
+
+        async function fetchData() {
+          try {
+            const response = await fetch(
+              "http://localhost:4000/api/Courses/getCourseData" // Replace with your actual backend endpoint
+            );
+            if (response.ok) {
+              const responseData = await response.json();
+              console.log(responseData.data);
+              displayData(responseData.data);
+            } else {
+              console.error(`Form submission failed: ${response.statusText}`);
+              displayNoData();
+            }
+          } catch (error) {
+            console.error(`Error submitting form: ${error.message}`);
+            displayNoData();
+          }
+        }
+
+        function displayData(batchInfo) {
+          console.log(batchInfo);
+          if (!batchInfo) {
+            container.innerHTML = "<p>No data available</p>";
+            return;
+          }
+          const cardContainer = document.querySelector(".card-container");
+
+          // Create and append new cards
+          for (let i = 0; i < batchInfo.length; i++) {
+            console.log(batchInfo[i]);
+            const newCard = createCard(
+              `${batchInfo[i].coursename}`,
+              `${batchInfo[i].courseid}`,
+              `${batchInfo[i].session}`
+            );
+            cardContainer.appendChild(newCard);
+          }
+          closePopup();
+        }
+
+        function displayNoData() {
+          const table = document.querySelector("#data-table");
+
+          // Hide the entire table
+          table.style.display = "none";
+
+          // You can show an image or any other message here
+          const noDataMessage = document.createElement("p");
+          noDataMessage.textContent = "No data available.";
+          document.body.appendChild(noDataMessage);
+        }
+      });
+    </script>
+  </body>
+</html>

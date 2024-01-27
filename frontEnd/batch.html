@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="./batch.css">
+    -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--icons-->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- google fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Nunito", sans-serif;
+        background-color: #f4f4f4;
+      }
+
+      .app-logo {
+        height: 60px;
+        width: 200px;
+      }
+
+      .batch-table {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .batch-title {
+        font-size: 25px;
+        font-weight: 300;
+        line-height: 40px;
+        margin: 20px auto;
+        padding: 8px 100px;
+        background-color: #346573;
+        border: 1px solid #346573;
+        color: #fefe;
+        border-radius: 10px;
+        width: 550px;
+      }
+      .batch-table a {
+        margin: 10px auto;
+        display: block;
+        border: 1px solid #346573;
+        border-radius: 8px;
+        padding: 10px 100px;
+        font-size: 23px;
+        font-weight: 300;
+        text-decoration: none;
+        color: #000;
+      }
+      .batch-table a:hover {
+        background-color: #cddce0;
+        transition: 0.2s ease-in-out;
+        transform: scale(1.03);
+      }
+
+      /***/
+
+      .add-new {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 50px auto;
+        width: 50%;
+      }
+      .add-new .icon {
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        font-size: 30px;
+        color: #346573;
+        cursor: pointer;
+      }
+      .add-new .text {
+        display: flex;
+        align-items: center;
+        font-size: 22px;
+      }
+
+      /*** popup form styling ***/
+
+      .popup-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 100px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        width: 600px;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        max-width: 600px;
+        width: 100%;
+        border-radius: 8px;
+      }
+
+      .popup-form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .popup-form label {
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      .popup-form input {
+        padding: 10px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+
+      .popup-form button {
+        padding: 12px;
+        background-color: #cf7610;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .popup-form button:hover {
+        background-color: #b96607;
+      }
+
+      .gender-field {
+        align-items: right;
+      }
+      #gender {
+        padding: 10px;
+        margin: 10px 0;
+        outline: none;
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+      }
+
+      /** styling header section ***/
+
+      header {
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        height: 50px;
+      }
+
+      #logo-container {
+        order: 1;
+      }
+
+      .app-logo {
+        margin-top: 10px;
+        height: 60px;
+        width: 200px;
+      }
+
+      #collapsible-navbar {
+        order: 3; /* Move the 3 bars to the right */
+        cursor: pointer;
+      }
+
+      #menu-container {
+        display: flex;
+        flex-direction: column;
+        background-color: #dfe9ed;
+        gap: 20px 0;
+        transition: width 0.2s ease;
+        overflow: hidden;
+        width: 0;
+        border-radius: 15px;
+        order: 2;
+        position: absolute;
+        top: 70px;
+        right: 0;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        padding: 0px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .menu-icon {
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        padding: 20px 30px;
+      }
+
+      .menu-icon:hover {
+        background-color: #c0d5dc;
+        transform: scale(1.05);
+      }
+
+      .icon {
+        font-size: 24px;
+        color: #416f83;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .icon:hover + .menu-item {
+        display: block;
+      }
+
+      #menu-icon-container {
+        display: flex;
+        align-items: center;
+        order: 4; /* Move the menu icon container to the rightmost side */
+      }
+
+      /***/
+    </style>
+
+    <title>Batch Information</title>
+  </head>
+
+  <body>
+    <!--<header class="header-section">
+        <nav class="header-container">
+            <div class="app-logo"><img src="/frontEnd/LogoFinal.png" class="app-logo"></div>
+            <div class="app-logo"><img src="/frontEnd/LogoFinal.png" class="app-logo"></div>
+            <div>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="#">Batch</a></li>
+                    <li><a href="../profile.html">Profile</a></li>
+                </ul>
+            </div>-->
+    <!--<div id="menu-container">
+                <div id="collapsible-navbar" onclick="toggleMenu()">
+                    <i class="fas fa-bars icon"></i>
+                </div>
+            </div>
+        </nav>
+    </header>-->
+
+    <header>
+      <!--logo-->
+      <div id="logo-container">
+        <img src="pictures/LogoFinal.png" alt="app logo" class="app-logo" />
+      </div>
+
+      <div id="menu-icon-container">
+        <div id="collapsible-navbar" onclick="toggleMenu()">
+          <i class="fas fa-bars icon"></i>
+        </div>
+      </div>
+    </header>
+
+    <!--expandable navbar-->
+
+    <nav id="menu-container">
+      <a href="http://localhost:4000/api/home" class="menu-icon">
+        <i class="fas fa-home icon"></i>
+        <span class="menu-item">Home</span>
+      </a>
+
+      <a href="#" class="menu-icon">
+        <i class="fas fa-bell icon"></i>
+        <span class="menu-item">Notifications</span>
+      </a>
+
+      <a href="http://localhost:4000/api/batches" class="menu-icon">
+        <i class="fa-solid fa-users icon"></i>
+        <span class="menu-item">Batches</span>
+      </a>
+
+      <a href="#" class="menu-icon">
+        <i class="fa-solid fa-file icon"></i>
+        <span class="menu-item">Class Routine</span>
+      </a>
+
+      <a href="http://localhost:4000/api/form" class="menu-icon">
+        <i class="fa-regular fa-address-book icon"></i>
+        <span class="menu-item">Add Students</span>
+      </a>
+
+      <a href="" class="menu-icon">
+        <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
+        <span class="menu-item">Logout</span>
+      </a>
+    </nav>
+
+    <div class="add-new">
+      <i class="fa-solid fa-circle-plus icon" onclick="openForm()"></i>
+      <span class="text">Add New Batch</span>
+    </div>
+    <div class="batch-table">
+      <table>
+        <tr>
+          <td class="batch-title">The Batches You Take</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- PopUp form -->
+
+    <div class="popup-container" id="popupContainer">
+      <form class="popup-form">
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="ICT __"
+          required
+        />
+
+        <label for="session">Session:</label>
+        <input
+          type="text"
+          id="session"
+          name="session"
+          placeholder="__-__"
+          required
+        />
+
+        <button type="button" onclick="submitForm()">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      function toggleMenu() {
+        var menuContainer = document.getElementById("menu-container");
+        menuContainer.style.width =
+          menuContainer.style.width === "300px" ? "0" : "300px";
+
+        var cardContainer = document.querySelector(".container");
+        cardContainer.style.marginRight =
+          menuContainer.style.width === "300px" ? "500px" : "auto";
+      }
+      let formclick = true;
+      function openForm() {
+        if (formclick) {
+          formclick = false;
+          const popup = document.getElementById("popupContainer");
+          popup.style.display = "block";
+        } else {
+          formclick = true;
+          closePopup();
+        }
+      }
+
+      // Do not invoke submitForm() here, it will be called on button click
+
+      async function submitForm() {
+        const form = document.querySelector(".popup-form");
+
+        const data = new FormData(form);
+        const urlEncoded = new URLSearchParams(data).toString();
+
+        try {
+          const response = await fetch(
+            "http://localhost:4000/api/batches/storebatchform",
+            {
+              method: "POST",
+              body: urlEncoded,
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+            }
+          );
+
+          const result = await response.json();
+          if (result.success) {
+            form.reset();
+            alert("Form submitted successfully! Data is stored.");
+          } else {
+            console.error("Form submission failed:", result.error);
+          }
+          console.log(result);
+        } catch (error) {
+          console.error("Error submitting form:", error);
+        }
+        closePopup();
+      }
+
+      function closePopup() {
+        const popup = document.getElementById("popupContainer");
+        popup.style.display = "none";
+      }
+
+      // Add this code in the existing script
+      let sessionLength = 0;
+      document.addEventListener("DOMContentLoaded", async () => {
+        const batchLinks = document.querySelectorAll(".batch-link");
+        const batchTable = document.querySelector(".batch-table table");
+
+        try {
+          // Fetch sessions from the backend
+          const response = await fetch(
+            "http://localhost:4000/api/batches/getSessions"
+          );
+          if (response.ok) {
+            const sessionsFromBackend = await response.json();
+            console.log(sessionsFromBackend.sessions);
+            sessionLength = sessionsFromBackend.sessions.length;
+            const sessions = sessionsFromBackend.sessions;
+            createElement(sessions);
+          } else {
+            console.error(`Form submission failed: ${response.statusText}`);
+          }
+
+          function createElement(sessions) {
+            try {
+              sessions.forEach((session) => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                const link = document.createElement("a");
+
+                link.href = "#";
+                link.classList.add("batch-link");
+                link.setAttribute("data-session", session);
+                link.textContent = `Session ${session}`;
+
+                cell.appendChild(link);
+                row.appendChild(cell);
+                batchTable.appendChild(row);
+              });
+            } catch (error) {
+              console.log(error);
+            }
+          }
+
+          const batchLinks = document.querySelectorAll(".batch-link");
+
+          batchLinks.forEach((link) => {
+            link.addEventListener("click", async (e) => {
+              e.preventDefault();
+              const session = link.getAttribute("data-session");
+              window.location.href = `http://localhost:4000/api/batches/${session}`;
+            });
+          });
+        } catch (error) {
+          console.error("Error fetching sessions:", error);
+        }
+      });
+    </script>
+  </body>
+</html>

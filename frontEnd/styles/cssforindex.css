@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    
+    height: 100vh;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+
+
+.content{
+    background-color: #ffffff;
+    padding: 30px; /* Increase padding for a larger form */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Increase width for a larger form */
+    align-items: center;
+    justify-content: center;
+}
+
+
+.label-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.formcard {
+    transition: transform 0.3s ease-in-out;
+}
+
+.formcard:hover {
+    transform: scale(1.05);
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes navPop {
+    0%, 100% {
+        transform: scale(1) translateY(0);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(5) translateY(-10px);
+        opacity: 1;
+    }
+}
+.label-container,
+input,
+select,
+button {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Additional Styling for better visual separation */
+.name,
+.gender,
+.birthday,
+.email {
+    margin-bottom: 20px;
+}
+
+.navbar{
+    background-color: #4CAF50;
+    
+}
+.navbar ul{
+    overflow: auto;
+}
+.navbar li{
+    float: left;
+    list-style: none;
+    margin: 13px 20px;
+}
+.navbar li a{
+    padding : 3px 3px;
+    text-decoration: none;
+    color: #f4f4f4;
+}
+.navbar li a:hover{
+    animation: navPop 1s ease-in-out infinite;
+}

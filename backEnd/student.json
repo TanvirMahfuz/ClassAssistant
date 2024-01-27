@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Tanvir Mahfuz",
+        "id":"it20052",
+        "gender": "Male",
+        "session": "2019-2020",
+        "courses": [],
+        "contact": {
+          "email": "it20052@gmail.com",
+          "phone": ""
+        },
+        "ct_marks":[],
+        "assinements":[],
+        "attendence":{
+            "date":null,
+            "presence":false,
+            "present":null,
+            "absent":null
+        }
+      }
+      
+]

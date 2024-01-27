@@ -1,0 +1,22 @@
+.btn-attendence{
+    border:0;
+    padding: 15px 25px;
+    border-radius: 10px;
+    background-color: #ff900e;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+.btn-attendence a{
+    text-decoration: none;
+    color: white;
+}
+.attendence-section{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+    height: 500px;
+    align-items: center;
+}

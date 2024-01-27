@@ -1,0 +1,29 @@
+.batch-table{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+.batch-title{
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 50px;
+    margin: 20px auto;
+    padding: 10px 100px;
+    border: 1px solid;
+    border-radius: 10px;
+}
+.batch-table a{
+    margin: 10px auto;
+    display: block;
+    border: 1px solid red;
+    border-radius: 8px;
+    padding: 20px 300px;
+    font-size: 30px;
+    font-weight: 800;
+    text-decoration: none;
+}
+.batch-table a:hover{
+    background-color: pink;
+    transition: 500ms ease-in-out;
+}

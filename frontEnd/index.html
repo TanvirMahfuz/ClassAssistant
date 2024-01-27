@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--icons-->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- google fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        font-family: "Nunito", sans-serif;
+      }
+
+      header {
+        background-color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        height: 50px;
+      }
+
+      #logo-container {
+        order: 1;
+      }
+
+      .app-logo {
+        margin-top: 15px;
+        margin-left: 10px;
+        height: 60px;
+        width: 230px;
+      }
+
+      #collapsible-navbar {
+        order: 3;
+        cursor: pointer;
+      }
+
+      #menu-container {
+        display: flex;
+        flex-direction: column;
+        background-color: #dfe9ed;
+        gap: 20px 0;
+        transition: width 0.2s ease;
+        overflow: hidden;
+        width: 0;
+        border-radius: 15px;
+        order: 2;
+        position: absolute;
+        top: 70px;
+        right: 0;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        padding: 0px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .menu-icon {
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        padding: 20px 30px;
+      }
+
+      .menu-icon:hover {
+        background-color: #c0d5dc;
+        transform: scale(1.05);
+      }
+
+      .icon {
+        font-size: 24px;
+        color: #416f83;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .icon:hover + .menu-item {
+        display: block;
+      }
+
+      /** rightC **/
+      li {
+        list-style: none;
+      }
+
+      .nav-right-corner {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+      }
+      .user-profile {
+        font-size: 21px;
+        color: #9aa5ab;
+      }
+
+      .user-profile:hover {
+        text-decoration: underline;
+        color: #2d667e;
+      }
+      /** home wall **/
+
+      .body-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .home-wallpaper {
+        height: 600px;
+        width: 600px;
+      }
+    </style>
+    <title>Homepage</title>
+  </head>
+  <body>
+    <header>
+      <!--logo-->
+      <div>
+        <li id="logo-container">
+          <img src="pictures/LogoFinal.png" alt="app logo" class="app-logo" />
+        </li>
+      </div>
+
+      <ul class="nav-right-corner">
+        <li><a href="profile.html" class="user-profile">Username</a></li>
+        <li id="menu-icon-container">
+          <div id="collapsible-navbar" onclick="toggleMenu()">
+            <i class="fas fa-bars icon"></i>
+          </div>
+        </li>
+      </ul>
+    </header>
+
+    <nav id="menu-container">
+      <a href="#" class="menu-icon">
+        <i class="fas fa-home icon"></i>
+        <span class="menu-item">Home</span>
+      </a>
+
+      <a href="#" class="menu-icon">
+        <i class="fas fa-bell icon"></i>
+        <span class="menu-item">Notifications</span>
+      </a>
+
+      <a href="http://localhost:4000/api/batches" class="menu-icon">
+        <i class="fa-solid fa-users icon"></i>
+        <span class="menu-item">Students</span>
+      </a>
+
+      <a href="http://localhost:4000/api/Courses/getCourses" class="menu-icon">
+        <i class="fa-solid fa-graduation-cap icon"></i>
+        <span class="menu-item">Courses</span>
+      </a>
+
+      <a href="#" class="menu-icon">
+        <i class="fa-solid fa-file icon"></i>
+        <span class="menu-item">Class Routine</span>
+      </a>
+
+      <a href="" class="menu-icon">
+        <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
+        <span class="menu-item">Logout</span>
+      </a>
+    </nav>
+
+    <!--body-->
+
+    <div class="body-container">
+      <img src="pictures/books with bg.png" alt="wall" class="home-wallpaper" />
+    </div>
+
+    <script>
+      function toggleMenu() {
+        var menuContainer = document.getElementById("menu-container");
+        menuContainer.style.width =
+          menuContainer.style.width === "300px" ? "0" : "300px";
+      }
+    </script>
+  </body>
+</html>

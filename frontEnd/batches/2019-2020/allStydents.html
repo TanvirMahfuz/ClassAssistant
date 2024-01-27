@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>Students</header>
+    <main>
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Student Id</th>
+            <th>Courses</th>
+            <th>Attendence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Data will be dynamically added here -->
+        </tbody>
+      </table>
+    </main>
+    <footer>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          // Fetch data from the server on page load
+          fetchData();
+
+          async function fetchData() {
+            try {
+              //fetching data from router/batches through get call
+              const response = await fetch(
+                "http://localhost:4000/api/batches/session" // Replace with your actual backend endpoint
+              );
+              if (response.ok) {
+                const responseData = await response.json();
+                const studentData = response.Students;
+                displayData(studentData);
+              } else {
+                console.error(`Form submission failed: ${response.statusText}`);
+                displayNoData();
+              }
+            } catch (error) {
+              console.error(`Error submitting form: ${error.message}`);
+              displayNoData();
+            }
+          }
+
+          function displayData(data) {
+            const table = document.querySelector("#data-table");
+            const tableBody = document.querySelector("#data-table tbody");
+
+            // Clear existing rows
+            tableBody.innerHTML = "";
+
+            if (data.length === 0) {
+              // Display no data message
+              displayNoData();
+            } else {
+              // Show the table headers
+              table.style.display = "table";
+
+              // Loop through the data and create table rows
+              data.forEach((student) => {
+                const row = tableBody.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                const cell3 = row.insertCell(2);
+                const cell4 = row.insertCell(3);
+
+                cell1.textContent = student["Student Name"];
+                cell2.textContent = student["Student Id"];
+                cell3.textContent = student["Courses"];
+                cell4.textContent = student["Attendance"];
+              });
+            }
+          }
+
+          function displayNoData() {
+            const table = document.querySelector("#data-table");
+
+            // Hide the entire table
+            table.style.display = "none";
+
+            // You can show an image or any other message here
+            const noDataMessage = document.createElement("p");
+            noDataMessage.textContent = "No data available.";
+            document.body.appendChild(noDataMessage);
+          }
+        });
+      </script>
+    </footer>
+  </body>
+</html>

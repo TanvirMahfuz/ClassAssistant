@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header-container{
+    max-width: 1440px;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-container ul {
+    display: flex;
+    justify-content: space-around;
+    gap: 40px;
+}
+.header-container li{
+    list-style: none;
+}
+.header-container a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px
+}
+.header-container a:hover{
+    border-radius: 5px;
+    border: 1px solid green;
+    padding: 10px 15px;
+}

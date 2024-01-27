@@ -1,0 +1,109 @@
+[
+    {
+      "name": "iPhone 13",
+      "company": "Apple",
+      "featured": true,
+      "rating": 4.9,
+      "price": 1099.99
+    },
+    {
+      "name": "Samsung Galaxy S21",
+      "company": "Samsung",
+      "featured": false,
+      "rating": 4.8,
+      "price": 999.99
+    },
+    {
+      "name": "Google Pixel 6",
+      "company": "Google",
+      "featured": true,
+      "rating": 4.7,
+      "price": 899.99
+    },
+    {
+      "name": "OnePlus 9",
+      "company": "OnePlus",
+      "featured": false,
+      "rating": 4.6,
+      "price": 799.99
+    },
+    {
+      "name": "Xiaomi Mi 11",
+      "company": "Xiaomi",
+      "featured": true,
+      "rating": 4.5,
+      "price": 699.99
+    },
+
+    {
+      "name": "Product 2",
+      "price": 999.99,
+      "featured": false,
+      "rating": 4.5,
+      "company": "Samsung"
+    },
+    {
+      "name": "Product 3",
+      "price": 1099.99,
+      "featured": true,
+      "rating": 4.6,
+      "company": "Google"
+    },
+    {
+      "name": "Product 4",
+      "price": 1199.99,
+      "featured": false,
+      "rating": 4.7,
+      "company": "OnePlus"
+    },
+    {
+      "name": "Product 5",
+      "price": 1299.99,
+      "featured": true,
+      "rating": 4.8,
+      "company": "Xiaomi"
+    },
+    {
+      "name": "Product 6",
+      "price": 1399.99,
+      "featured": false,
+      "rating": 4.9,
+      "company": "Apple"
+    },
+    {
+      "name": "Product 7",
+      "price": 1499.99,
+      "featured": true,
+      "rating": 5,
+      "company": "Samsung"
+    },
+    {
+      "name": "Product 8",
+      "price": 1599.99,
+      "featured": false,
+      "rating": 5.1,
+      "company": "Google"
+    },
+    {
+      "name": "Product 9",
+      "price": 1699.99,
+      "featured": true,
+      "rating": 5.2,
+      "company": "OnePlus"
+    },
+    {
+      "name": "Product 10",
+      "price": 1799.99,
+      "featured": false,
+      "rating": 5.3,
+      "company": "Xiaomi"
+    },
+    {
+      "name": "Product 11",
+      "price": 1899.99,
+      "featured": true,
+      "rating": 5.4,
+      "company": "Apple"
+    }
+  ]
+  
